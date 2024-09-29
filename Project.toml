@@ -1,0 +1,6 @@
+[deps]
+EtherSPH = "2e8a6dce-851f-4ff4-8c9d-f01c3f7a94ce"
+IJulia = "7073ff75-c697-5162-941a-fcdaad2a7d2a"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+ProgressBars = "49802e3a-d2f1-5c88-81d8-b72133a6f568"
+YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"

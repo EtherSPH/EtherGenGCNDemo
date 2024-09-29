@@ -1,0 +1,16 @@
+# .gitignore
+
+# file
+Manifest.toml
+
+# files
+*.vtp
+*.vtu
+*.vtk
+*.ipynb
+*.pyc
+*.pyo
+*.pyd
+
+# folders
+**/__pycache__/*

@@ -1,0 +1,41 @@
+info:
+  name: "demo"
+  date: 2024-09-29
+  author: "bcynuaa | vox-1"
+
+geometry:
+  dimension: 2
+  box_start: [0.0, 0.0]
+  box_end: [1.0, 1.0]
+  particle_gap: 0.03
+  fluid_start: [0.0, 0.0]
+  fluid_shape: [12, 12] # total as 144 particles
+
+global:
+  density: 1.0
+  gravity: [0.0, -8.0]
+  viscosity: 1e-5
+  estimated_max_velocity: 4.0 # u_max = sqrt(2 * g * H)
+  sound_speed: 40.0 # usually 10 times of the estimated max velocity, c = 10 * u_max
+  artificial_alpha: 0.1
+  artificial_beta: 0.1
+
+kernel:
+  type: "wendlandc2"
+  influence_radius_ratio: 2.5 # 2.5 times of the particle gap, h = 2.5 * dr
+
+simulation:
+  time_step_ratio: 0.1 # 0.1 * h / c
+  total_time: 3.0
+  output_interval: 5 # do output every 5 time steps
+  density_filter_interval: 20 # do density filter every 10 time steps
+
+output:
+  output_path: "results"
+  use_name: true
+  file_name: "demo_"
+  step_digit: 6
+
+material:
+  fluid: 1
+  wall: 2
