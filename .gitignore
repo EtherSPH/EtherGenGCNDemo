@@ -2,6 +2,7 @@
 
 # file
 Manifest.toml
+case.yaml
 
 # files
 *.vtp
@@ -14,3 +15,6 @@ Manifest.toml
 
 # folders
 **/__pycache__/*
+datasets/*
+results/*
+.VSCodeCounter/*

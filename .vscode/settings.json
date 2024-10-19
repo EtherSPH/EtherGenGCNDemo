@@ -16,4 +16,11 @@
             "description": "",
         }
     },
+    "python.analysis.extraPaths": [
+        "./py_script"
+    ],
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.VSCodeCounter": true,
+    }
 }

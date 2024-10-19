@@ -16,8 +16,8 @@ julia
 
 ## Usage
 
-1. Modify [`config/demo.yaml`](config/demo.yaml) to specify the parameters. Or you can create a new yaml file and pass it to the script.
-2. Modify [`run.jl`](run.jl) to specify the `yaml` file you want to use. The path is relative to the root of the project.
+1. Modify [`template/xxx.yaml`](template/delta_sph.yaml) to specify the parameters. Or you can create a new yaml file and pass it to the script.
+2. Modify [`jl_kernel_weighted.jl`](jl_script/jl_kernel_weighted.jl) to specify the `yaml` file you want to use. The path is relative to the root of the project.
 3. Run the script
 
 ```bash
@@ -29,6 +29,5 @@ In julia REPL
 ```julia
 > ] # Enter package mode
 > activate . # Activate the environment
-> include("run.jl") # include the script
-> main() # run the script, or @time main() to get the time
+> include("jl_kernel_weighted.jl") # Run the script
 ```

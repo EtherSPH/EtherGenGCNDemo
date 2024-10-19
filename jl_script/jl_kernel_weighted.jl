@@ -9,7 +9,8 @@ using EtherSPH
 using ProgressBars
 using YAML
 
-const config = YAML.load_file("config/demo.yaml")
+const config = YAML.load_file("case.yaml")
+# const config = YAML.load_file("template/kernel_weighted.yaml")
 
 const dim = config["geometry"]["dimension"]
 const dr = config["geometry"]["particle_gap"]
@@ -263,3 +264,5 @@ function main()::Nothing
     end
     return nothing
 end
+
+@time main()

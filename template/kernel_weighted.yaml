@@ -2,6 +2,7 @@ info:
   name: "demo"
   date: 2024-09-29
   author: "bcynuaa | vox-1"
+  comment: "kernel weighted density filter is more stable than delta sph, yet lack of pressure distribution accuracy"
 
 geometry:
   dimension: 2
@@ -15,20 +16,22 @@ global:
   density: 1.0
   gravity: [0.0, -8.0]
   viscosity: 1e-5
-  estimated_max_velocity: 4.0 # u_max = sqrt(2 * g * H)
+  estimated_max_velocity: 5.0 # u_max = sqrt(2 * g * H) usually
   sound_speed: 40.0 # usually 10 times of the estimated max velocity, c = 10 * u_max
+  delta_sph_coefficient: 0.1 # delta sph coefficient, δ
   artificial_alpha: 0.1
   artificial_beta: 0.1
 
 kernel:
-  type: "wendlandc2"
+  type: "cubic_spline"
   influence_radius_ratio: 2.5 # 2.5 times of the particle gap, h = 2.5 * dr
 
 simulation:
   time_step_ratio: 0.1 # 0.1 * h / c
   total_time: 3.0
   output_interval: 5 # do output every 5 time steps
-  density_filter_interval: 20 # do density filter every 10 time steps
+  density_filter_type: "kernel_weighted"
+  density_filter_interval: 20 # do density filter every 20 time steps
 
 output:
   output_path: "results"

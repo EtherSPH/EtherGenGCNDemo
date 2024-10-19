@@ -1,0 +1,44 @@
+info:
+  name: "demo_delta_sph"
+  date: 2024-10-19
+  author: "bcynuaa | vox-1"
+  comment: "for delta sph will produce better pressure distribution, it's better for nn training"
+
+geometry:
+  dimension: 2
+  box_start: [0.0, 0.0]
+  box_end: [1.0, 1.0]
+  particle_gap: 0.01
+  fluid_start: [0.4, 0.6]
+  fluid_shape: [24, 24]
+
+global:
+  density: 1.0
+  gravity: [0.0, -8.0]
+  viscosity: 1e-6
+  estimated_max_velocity: 5.0 # u_max = sqrt(2 * g * H) usually
+  sound_speed: 50.0 # usually 10 times of the estimated max velocity, c = 10 * u_max
+  delta_sph_coefficient: 0.1 # delta sph coefficient, δ
+  artificial_alpha: 0.1
+  artificial_beta: 0.1
+
+kernel:
+  type: "cubic_spline"
+  influence_radius_ratio: 2.5 # 2.5 times of the particle gap, h = 2.5 * dr
+
+simulation:
+  time_step_ratio: 0.1 # 0.1 * h / c
+  total_time: 1.5
+  output_interval: 100 # do output every 5 time steps
+  density_filter_type: "delta_sph"
+  density_filter_interval: 20 # do density filter every 10 time steps
+
+output:
+  output_path: "results"
+  use_name: true
+  file_name: "demo_delta_sph_"
+  step_digit: 6
+
+material:
+  fluid: 1
+  wall: 2
