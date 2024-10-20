@@ -29,5 +29,5 @@ In julia REPL
 ```julia
 > ] # Enter package mode
 > activate . # Activate the environment
-> include("jl_kernel_weighted.jl") # Run the script
+> include("jl_script/jl_kernel_weighted.jl") # Run the script
 ```

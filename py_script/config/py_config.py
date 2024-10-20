@@ -27,8 +27,8 @@ class Config(ConfigBase):
         template_yaml_file_name: str = "template/delta_sph.yaml",
         file_name: str = "case.yaml",
     ) -> None:
-        self.file_name: str = file_name
         self.template_yaml_file_name: str = template_yaml_file_name
+        self.file_name: str = file_name
         self.loadConfig()
         pass
     

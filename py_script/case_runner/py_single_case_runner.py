@@ -63,7 +63,6 @@ class SingleCaseRunner:
         # copy the case file to the result directory
         shutil.copy(self.config.getCaseName(), self.config.getResultFolder())
         print(f"case file has been copied to: {os.path.join(self.config.getResultFolder(), self.config.getCaseName())}")
-        print("=" * 100)
         pass
     
     pass

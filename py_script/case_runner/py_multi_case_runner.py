@@ -11,7 +11,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "."))
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from config.py_config import Config
-from py_single_case_runner import SingleCaseRunnerBase
+from py_single_case_runner import SingleCaseRunner
 
 class MultiCaseRunnerBase:
     
@@ -19,11 +19,13 @@ class MultiCaseRunnerBase:
         self,
         working_directory: str="dataset",
         case_typical_name: str="case",
-        file_name: str="step_"
+        file_name: str="step_",
+        digit_number: int=4
     ) -> None:
         self.setWorkingDirectory(working_directory)
         self.setCaseTypicalName(case_typical_name)
         self.setFileName(file_name)
+        self.setDigitNumber(digit_number)
         pass
     
     def getWorkingDirectory(self) -> str:
@@ -46,7 +48,7 @@ class MultiCaseRunnerBase:
         pass
     
     def getCaseName(self, index: int) -> str:
-        return f"{self.getCaseTypicalName()}_{index}"
+        return f"{self.getCaseTypicalName()}_{index:0{self.getDigitNumber()}d}"
         pass
     
     def getCasePath(self, index: int) -> str:
@@ -61,16 +63,24 @@ class MultiCaseRunnerBase:
         self.file_name = file_name
         pass
     
+    def getDigitNumber(self) -> int:
+        return self.digit_number
+        pass
+    
+    def setDigitNumber(self, digit_number: int) -> None:
+        self.digit_number = digit_number
+        pass
+    
     def generateConfig(self, index: int) -> Config:
         config: Config = Config()
         config.getInfo().setName(self.getCaseName(index))
-        config.getOutput().setOutputPath(self.getCasePath(index))
+        config.getOutput().setOutputPath(self.getWorkingDirectory())
         config.getOutput().setFileName(self.getFileName())
         return config
         pass
     
     def run(self, config: Config) -> None:
-        runner: SingleCaseRunnerBase = SingleCaseRunnerBase(config)
+        runner: SingleCaseRunner = SingleCaseRunner(config)
         runner.run()
         pass
     

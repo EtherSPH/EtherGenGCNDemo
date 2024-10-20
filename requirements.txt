@@ -1,2 +1,7 @@
 # requirements.txt
 pyyaml
+numpy
+pandas
+pyvista
+h5py
+tqdm

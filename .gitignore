@@ -12,6 +12,8 @@ case.yaml
 *.pyc
 *.pyo
 *.pyd
+*.h5
+*.hdf5
 
 # folders
 **/__pycache__/*
