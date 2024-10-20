@@ -41,8 +41,12 @@ class H5Dataset:
         return os.path.join(self.working_directory, f"{folder_basename}.hdf5")
         pass
     
+    def getPolyData(self, vtp_file_name: str) -> pv.PolyData:
+        return pv.read(vtp_file_name)
+        pass
+    
     def getSingleCaseSingleStepFeatures(self, vtp_file_name: str) -> np.ndarray:
-        poly_data: pv.PolyData = pv.read(vtp_file_name)
+        poly_data: pv.PolyData = self.getPolyData(vtp_file_name)
         x, y, _ = poly_data.points.T
         u, v = poly_data.point_data["Velocity"].T
         rho = poly_data.point_data["Density"]
