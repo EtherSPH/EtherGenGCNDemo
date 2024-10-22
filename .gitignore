@@ -20,3 +20,4 @@ case.yaml
 datasets/*
 results/*
 .VSCodeCounter/*
+test.ipynb

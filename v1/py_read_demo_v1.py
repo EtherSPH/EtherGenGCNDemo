@@ -21,10 +21,14 @@ with h5py.File(h5_file_name, "r") as h5_file:
     case_0 = h5_file["case_00"]
     print(f"case_00 keys: {list(case_0.keys())}")
     # let's read config first
-    case_0_config = case_0["config"]
-    case_0_config_dict = yaml.safe_load(case_0_config[()])
-    print(f"case_00 config: {type(case_0_config_dict)}")
-    pprint.pprint(case_0_config_dict)
+    # case_0_config = case_0["config"]
+    # case_0_config_dict = yaml.safe_load(case_0_config[()])
+    # print(f"case_00 config: {type(case_0_config_dict)}")
+    # pprint.pprint(case_0_config_dict)
+    
+    for k,v in case_0.attrs.items():
+        print(f'{k}: {v}')
+    
     # let's read sequence
     case_0_sequence = case_0["sequence"]
     case_0_sequence_np = np.array(case_0_sequence)
