@@ -1,3 +1,10 @@
+"""
+# Author: Xu Ran
+# Date: 2024-10-21 21:39:14
+# LastEditors: Xu Ran
+# LastEditTime: 2024-10-24 12:18:07
+# Description: 
+"""
 '''
  # @ author: bcynuaa <bcynuaa@163.com> | vox-1 <xur2006@163.com>
  # @ date: 2024/10/20 17:14:07
@@ -59,7 +66,7 @@ class H5Dataset:
         yaml_file: str = [file for file in file_list if file.endswith(".yaml")][0]
         with open(os.path.join(case_folder, yaml_file), "r") as f:
             yaml_dict: dict = yaml.load(f, Loader=yaml.FullLoader)
-            # yaml_str: str = yaml.dump(yaml_dict)
+            yaml_str: str = yaml.dump(yaml_dict)
             pass
         file_list: list = [file for file in file_list if file.endswith(".vtp")]
         file_list.sort()
@@ -69,25 +76,25 @@ class H5Dataset:
             features_list.append(features)
             pass
         features_array: np.ndarray = np.array(features_list)
-        return yaml_dict, features_array
+        return yaml_str, features_array
         pass
     
-    def _store_dict_as_attrs(self, h5obj, dictionary, prefix=''):
-        for key, value in dictionary.items():
-            if isinstance(value, dict):
-                self._store_dict_as_attrs(h5obj, value, prefix=f'{prefix}{key}/')
-            else:
-                h5obj.attrs[f'{prefix}{key}'] = value
+    # def _store_dict_as_attrs(self, h5obj, dictionary, prefix=''):
+    #     for key, value in dictionary.items():
+    #         if isinstance(value, dict):
+    #             self._store_dict_as_attrs(h5obj, value, prefix=f'{prefix}{key}/')
+    #         else:
+    #             h5obj.attrs[f'{prefix}{key}'] = value
     
     def generateH5File(self) -> None:
         h5_file_name: str = self.getH5FileName()
         with h5py.File(h5_file_name, "w") as f:
             for i_case in tqdm.tqdm(range(len(self.case_folder_list))):
                 case_folder: str = self.getCaseFolder(i_case)
-                yaml_dict, features_array = self.readSingleCase(case_folder)
+                yaml_str, features_array = self.readSingleCase(case_folder)
                 group = f.create_group(f"{os.path.basename(case_folder)}")
-                # group.create_dataset("config", data=yaml_str)
-                self._store_dict_as_attrs(group, yaml_dict)
+                group.create_dataset("config", data=yaml_str)
+                # self._store_dict_as_attrs(group, yaml_dict)
                 group.create_dataset("sequence", data=features_array)
                 pass
             pass
