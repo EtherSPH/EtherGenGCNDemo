@@ -68,7 +68,7 @@ class H5Dataset:
             yaml_dict: dict = yaml.load(f, Loader=yaml.FullLoader)
             yaml_str: str = yaml.dump(yaml_dict)
             pass
-        file_list: list = [file for file in file_list if file.endswith(".vtp")]
+        file_list: list = [file for file in file_list if file.endswith(".vtp")][1:] # ! Skip the first file
         file_list.sort()
         features_list: list = []
         for vtp_file_name in file_list:
